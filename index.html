@@ -277,11 +277,11 @@ window.addEventListener('load', async ()=>{
   // wallpaper
   const savedWallpaper=await loadField('wallpaper');
   if(savedWallpaper && wallpapers.includes(savedWallpaper)){
-    document.body.style.backgroundImage=url(${savedWallpaper});
+    document.body.style.backgroundImage=`url(${savedWallpaper})`;
     wallpaperSelect.value=savedWallpaper;
     currentWallpaperIndex=wallpapers.indexOf(savedWallpaper);
   } else {
-    document.body.style.backgroundImage=url(${wallpapers[0]});
+    document.body.style.backgroundImage=`url(${wallpapers[0]})`;
   }
   // stats
   document.querySelectorAll('.left-panel input').forEach(async input=>{
@@ -297,7 +297,7 @@ window.addEventListener('load', async ()=>{
 wallpaperSelect.addEventListener('change',()=>updateWallpaper(wallpaperSelect.value));
 prevButton.addEventListener('click',()=>nextWallpaper(-1));
 nextButton.addEventListener('click',()=>nextWallpaper(1));
-function updateWallpaper(value){ document.body.style.backgroundImage=url(${value}); saveField('wallpaper',value); currentWallpaperIndex=wallpapers.indexOf(value);}
+function updateWallpaper(value){ document.body.style.backgroundImage=`url(${value})`; saveField('wallpaper',value); currentWallpaperIndex=wallpapers.indexOf(value);}
 function nextWallpaper(delta){ currentWallpaperIndex=(currentWallpaperIndex+delta+wallpapers.length)%wallpapers.length; updateWallpaper(wallpapers[currentWallpaperIndex]);}
 
 // Tabs
