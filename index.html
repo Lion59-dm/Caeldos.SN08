@@ -337,7 +337,15 @@ function createActionElement(data, saveFunc){
     div.appendChild(input);
   });
   const del=document.createElement('button'); del.textContent='Delete'; del.className='delete-action-btn';
-  del.addEventListener('click',()=>{div.remove(); saveFunc();});
+  let holdTimer;
+  del.addEventListener('mousedown', () => {
+    holdTimer = setTimeout(() => {
+      div.remove();
+      saveFunc();
+    }, 3000); // 3000ms = 3 seconds
+  });
+  del.addEventListener('mouseup', () => clearTimeout(holdTimer));
+  del.addEventListener('mouseleave', () => clearTimeout(holdTimer));
   div.appendChild(del);
   return div;
 }
